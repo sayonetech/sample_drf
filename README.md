@@ -1,2 +1,1 @@
-
-*** Sammple
+### Sample API's using DRF
