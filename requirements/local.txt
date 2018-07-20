@@ -1,1 +1,3 @@
 -r base.txt
+
+coreapi==2.3.3
