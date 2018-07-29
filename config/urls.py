@@ -20,7 +20,7 @@ from rest_framework.documentation import include_docs_urls
 
 
 api_v1_patterns = [
-    path(r'', include('applications.user_app.urls')),
+    path('accounts/', include('rest_registration.api.urls')),
 ]
 
 urlpatterns = [

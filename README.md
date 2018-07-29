@@ -11,3 +11,14 @@
 - 404	Not found – There is no resource behind the URI.
 - 422	Un-processable Entity – Should be used if the server cannot process the entity, e.g. if an image cannot be formatted or mandatory fields are missing in the payload.
 - 500	Internal Server Error – API developers should avoid this error. If an error occurs in the global catch blog, the stack-trace should be logged and not returned as response.
+
+
+### Setup project for development:
+
+- Clone the project
+- Install packages mentioned in the runtime.txt
+- Create virtualenv  "python3.6 -m venv <virtual_path>"
+- Activate and install requirements.txt
+- Create a .env file in the root folder, using env.example as template
+
+Docs link: "http://<domain>/docs/", it will be enabled only if REST_FRAMEWORK_DOC_ENABLED=True

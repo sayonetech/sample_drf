@@ -43,6 +43,7 @@ DJANGO_APPS = (
 
 THIRD_PARTY_APPS = (
     'rest_framework',
+    'rest_registration',  # User registration, login, logout https://github.com/apragacz/django-rest-registration
 )
 
 LOCAL_APPS = (
@@ -151,3 +152,14 @@ REST_FRAMEWORK = {
 }
 
 REST_FRAMEWORK_DOC_ENABLED = False
+
+#  rest_registration configs https://github.com/apragacz/django-rest-registration#configuration-options
+REST_REGISTRATION = {
+    'REGISTER_VERIFICATION_ENABLED': False,
+
+    'RESET_PASSWORD_VERIFICATION_URL': 'https://frontend-url/reset-password/',
+
+    'REGISTER_EMAIL_VERIFICATION_ENABLED': False,
+
+    'VERIFICATION_FROM_EMAIL': 'no-reply@example.com',
+}
