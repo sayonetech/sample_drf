@@ -21,4 +21,4 @@
 - Activate and install requirements.txt
 - Create a .env file in the root folder, using env.example as template
 
-Docs link: "http://<domain>/docs/", it will be enabled only if REST_FRAMEWORK_DOC_ENABLED=True
+Docs link: "http://domain.com>/docs/", it will be enabled only if REST_FRAMEWORK_DOC_ENABLED=True
