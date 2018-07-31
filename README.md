@@ -22,3 +22,75 @@
 - Create a .env file in the root folder, using env.example as template
 
 Docs link: "http://domain.com>/docs/", it will be enabled only if REST_FRAMEWORK_DOC_ENABLED=True
+
+* Listing example output:
+```json
+{
+    "count": 10,
+    "next": "http://127.0.0.1:8000/api/v1/posts/?limit=2&offset=2",
+    "previous": null,
+    "results": [
+        {
+            "text": "test",
+            "user": {
+                "id": 1,
+                "username": "ranju",
+                "name": "Ranju R"
+            },
+            "created": "2018-07-31T11:32:14.727142Z"
+        },
+        {
+            "text": "test",
+            "user": {
+                "id": 1,
+                "username": "ranju",
+                "name": "Ranju R"
+            },
+            "created": "2018-07-31T11:31:43.644533Z"
+        }
+    ]
+}
+
+Status code: 200
+```
+
+* Error listing for each field
+```json
+{
+    "text": [
+        "This field is required."
+    ]
+}
+
+Status code: 400
+```
+
+* Created 
+```json
+{
+    "text": "Test",
+    "user": {
+        "id": 1,
+        "username": "ranju",
+        "name": "Ranju R"
+    },
+    "created": "2018-07-31T13:01:52.091217Z"
+}
+
+Status code: 201
+```
+
+* Detail 
+```json
+{
+    "text": "Test",
+    "user": {
+        "id": 1,
+        "username": "ranju",
+        "name": "Ranju R"
+    },
+    "created": "2018-07-31T13:01:52.091217Z"
+}
+
+Status code: 200
+```
