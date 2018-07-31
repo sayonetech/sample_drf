@@ -21,6 +21,7 @@ from rest_framework.documentation import include_docs_urls
 
 api_v1_patterns = [
     path('accounts/', include('rest_registration.api.urls')),
+    path('', include('applications.post.urls')),
 ]
 
 urlpatterns = [

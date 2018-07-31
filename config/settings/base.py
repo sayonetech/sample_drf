@@ -149,6 +149,9 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = str(ROOT_DIR('media'))
 
 REST_FRAMEWORK = {
+    # configuration for pagination - Always enable pagination using this setting if there is listing
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 20
 }
 
 REST_FRAMEWORK_DOC_ENABLED = False
