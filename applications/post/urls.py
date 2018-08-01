@@ -1,6 +1,6 @@
 from django.conf.urls import url, include
 from rest_framework import routers
-from .v1 import views as v1_views
+from .api import views as v1_views
 
 
 router = routers.DefaultRouter()
