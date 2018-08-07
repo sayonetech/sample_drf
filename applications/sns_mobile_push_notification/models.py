@@ -1,27 +1,31 @@
 from django.db import models
-from sns_mobile_push_notification.client import Client
+from django.conf import settings
+from django.utils.translation import ugettext_lazy as _
+
+from common.base_models import AbstractBaseModel
+from .client import Client
 
 
-class Device(models.Model):
+class Device(AbstractBaseModel):
     """
     Django model class representing a device.
     """
 
     # Constants
-    IOS_OS = 0
-    ANDROID_OS = 1
+    IOS_OS = 'ios'
+    ANDROID_OS = 'android'
     OS_CHOICES = (
         (IOS_OS, 'IOS'),
         (ANDROID_OS, 'Android'),
     )
 
-    # Fields
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    os = models.IntegerField(choices=OS_CHOICES)
+    os = models.CharField(choices=OS_CHOICES, max_length=8)
     token = models.CharField(max_length=255, unique=True)
     arn = models.CharField(max_length=255, unique=True, blank=True, null=True)
     active = models.BooleanField(default=True)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, verbose_name=_('User'), related_name="user_devices",
+        on_delete=models.CASCADE, null=True, blank=True)  # Can create device without user
 
     # Methods
     def __str__(self):
@@ -51,6 +55,10 @@ class Device(models.Model):
             return "IOS"
         else:
             return "unknown"
+
+    @staticmethod
+    def get_active_devices():
+        return Device.objects.filter(active=True)
 
     def register(self):
         """
@@ -149,14 +157,10 @@ class Device(models.Model):
         return response
 
 
-class Log(models.Model):
+class Log(AbstractBaseModel):
     """
     Django model class representing a notification log.
     """
-
-    # Fields
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
     device = models.ForeignKey('Device', on_delete=models.CASCADE, related_name='notification_logs', null=True, blank=True)
     notification_type = models.CharField(max_length=255, null=True, blank=True)
     arn = models.CharField(max_length=255, null=True, blank=True)

@@ -16,7 +16,7 @@ import environ
 ROOT_DIR = environ.Path(__file__) - 3
 
 env = environ.Env()
-READ_DOT_ENV_FILE = env.bool('DJANGO_READ_DOT_ENV_FILE', default=False)
+READ_DOT_ENV_FILE = env.bool('DJANGO_READ_DOT_ENV_FILE', default=True)
 if READ_DOT_ENV_FILE:
     env_file = str(ROOT_DIR.path('.env'))
     print('Loading : {}'.format(env_file))
@@ -29,7 +29,8 @@ if READ_DOT_ENV_FILE:
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DJANGO_DEBUG', False)
-
+SECRET_KEY = env('DJANGO_SECRET_KEY')
+DEBUG = env.bool('DJANGO_DEBUG', default=True)
 
 # Application definition
 DJANGO_APPS = (
@@ -48,6 +49,7 @@ THIRD_PARTY_APPS = (
 
 LOCAL_APPS = (
     'applications.post',
+    'applications.sns_mobile_push_notification',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -154,7 +156,7 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 20
 }
 
-REST_FRAMEWORK_DOC_ENABLED = False
+REST_FRAMEWORK_DOC_ENABLED = env.bool('REST_FRAMEWORK_DOC_ENABLED')
 
 #  rest_registration configs https://github.com/apragacz/django-rest-registration#configuration-options
 REST_REGISTRATION = {
@@ -166,3 +168,14 @@ REST_REGISTRATION = {
 
     'VERIFICATION_FROM_EMAIL': 'no-reply@example.com',
 }
+
+# Push notification settings, using amazon SNS
+
+ENABLE_AWS_PUSH_NOTIFICATION = env.bool('ENABLE_AWS_PUSH_NOTIFICATION')
+if ENABLE_AWS_PUSH_NOTIFICATION:
+    AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')  # Access key of your AWS user
+    AWS_SECRET_ACCESS_KEY = env('AWS_ACCESS_KEY_ID')  # Secret key of your AWS user.
+    AWS_SNS_REGION_NAME = env('AWS_ACCESS_KEY_ID')  # The region your SNS
+    # application is located in( e.g. 'eu-central-1').
+    IOS_PLATFORM_APPLICATION_ARN = env('AWS_ACCESS_KEY_ID')  # ARN for IOS platform application.
+    ANDROID_PLATFORM_APPLICATION_ARN = env('AWS_ACCESS_KEY_ID')  # ARN for Android platform application.
