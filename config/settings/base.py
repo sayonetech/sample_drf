@@ -174,8 +174,8 @@ REST_REGISTRATION = {
 ENABLE_AWS_PUSH_NOTIFICATION = env.bool('ENABLE_AWS_PUSH_NOTIFICATION')
 if ENABLE_AWS_PUSH_NOTIFICATION:
     AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')  # Access key of your AWS user
-    AWS_SECRET_ACCESS_KEY = env('AWS_ACCESS_KEY_ID')  # Secret key of your AWS user.
-    AWS_SNS_REGION_NAME = env('AWS_ACCESS_KEY_ID')  # The region your SNS
+    AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')  # Secret key of your AWS user.
+    AWS_SNS_REGION_NAME = env('AWS_SNS_REGION_NAME')  # The region your SNS
     # application is located in( e.g. 'eu-central-1').
-    IOS_PLATFORM_APPLICATION_ARN = env('AWS_ACCESS_KEY_ID')  # ARN for IOS platform application.
-    ANDROID_PLATFORM_APPLICATION_ARN = env('AWS_ACCESS_KEY_ID')  # ARN for Android platform application.
+    IOS_PLATFORM_APPLICATION_ARN = env('IOS_PLATFORM_APPLICATION_ARN')  # ARN for IOS platform application.
+    ANDROID_PLATFORM_APPLICATION_ARN = env('ANDROID_PLATFORM_APPLICATION_ARN')  # ARN for Android platform application.
