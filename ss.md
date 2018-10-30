@@ -18,7 +18,7 @@ All requests are handled over HTTPS.
 Some requests require an `app-id`. If you are sending requests to the ARRIVE REST API from arrive.example.com, you can create an App ID such as arrive.example.com
 Requests must be sent to the `https://api.curbside.com/plt/ad/2017-05-31/notify` endpoint.
 
-## Cancelling or Completing a Trip
+## Cancelling or Completing a Trips {#cancelling-or-completing-a-trip}
 Cancelling trips through the ARRIVE REST API is necessary when the trip cannot
 be fulfilled. For example, in a retail scenario, a trip might need to be
 cancelled when an order is cancelled due to an out-of-stock event.
