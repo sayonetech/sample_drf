@@ -130,25 +130,20 @@ class Device(AbstractBaseModel):
         log.save()
 
         client = Client()
+        params = {
+            'arn': self.arn,
+            'text': text,
+            'title': title,
+            'notification_type': notification_type,
+            'data': data,
+            'id': log.id,
+        }
+            
 
         if self.is_android:
-            message, response = client.publish_to_android(
-                arn=self.arn,
-                text=text,
-                title=title,
-                notification_type=notification_type,
-                data=data,
-                id=log.id,
-            )
+            message, response = client.publish_to_android(**params)
         elif self.is_ios:
-            message, response = client.publish_to_ios(
-                arn=self.arn,
-                text=text,
-                title=title,
-                notification_type=notification_type,
-                data=data,
-                id=log.id,
-            )
+            message, response = client.publish_to_ios(**params)
 
         log.message = message
         log.response = response
